@@ -25,28 +25,55 @@ class Enemy {
 // This class requires an update(), render() and
 // a handleInput() method.
 class Player {
-    constructor(sprite) {
+    constructor(x, y) {
         // Variables applied to each of our instances go here,
         // we've provided one for you to get started
-
+        this.x = x;
+        this.y = y;
+        //this.speed = speed;
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images
         this.sprite = 'images/char-boy.png';
     }
     // Update the player's position, required method for game
     // Parameter: dt, a time delta between ticks
-    update(dt) {
-        // You should multiply any movement by the dt parameter
-        // which will ensure the game runs at the same speed for
-        // all computers.
+    update() {
+        if (this.x < 2)
+            this.x = 2;
+        else if ( this.x > 402)
+            this.x = 402;
+        else if (this.y > 405)
+            this.y = 405;
+        else if (this.y < 0) {
+            //setTimeout(function(){ 
+                this.y = 405;
+                this.x = 202;
+            //}, 1000);
+        }
     }
     // Draw the player on the screen, required method for game
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
-    handleInput(){
-
+    handleInput(input){
+       switch(input) {
+           case "left":
+                this.x -= 100;
+                console.log(this.x);
+                //this.x -= this.speed + 50;
+                break;
+           case "right":
+                this.x += 100;
+                break;
+           case "up":
+                this.y -= 83;
+                console.log(this.y);
+                break;
+           case "down":
+                this.y += 83;
+                break;
+       }
     }
 }
 
@@ -55,7 +82,7 @@ class Player {
 // Place the player object in a variable called player
 const enemy = new Enemy();
 const allEnemies = [enemy];
-const player = new Player();
+const player = new Player(202, 405);
 
 
 
