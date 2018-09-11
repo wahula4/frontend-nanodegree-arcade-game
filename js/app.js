@@ -1,50 +1,53 @@
-// Enemies our player must avoid
+// Enemies class
 class Enemy {
     constructor(x, y, speed) {
         this.x = x;
         this.y = y;
         this.speed = speed;
-        // Variables applied to each of our instances go here,
-        // we've provided one for you to get started
+        // Variables applied to each of our instances go here
 
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images
         this.sprite = 'images/enemy-bug.png';
     }
-    // Update the enemy's position, required method for game
+    // Update the enemy's position
     // Parameter: dt, a time delta between ticks
     update(dt) {
+         // You should multiply any movement by the dt parameter
+        // which will ensure the game runs at the same speed for
+        // all computers.
         this.x += this.speed * dt;
 
         if (this.x > 510)
             this.x = -125;
-            //resetSpeed();
-        // You should multiply any movement by the dt parameter
-        // which will ensure the game runs at the same speed for
-        // all computers.
+       
+        // 2D collision logic from MDN https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+        if (player.x < this.x + 60 &&
+            player.x + 35 > this.x &&
+            player.y < this.y + 25 &&
+            player.y + 40 > this.y) {
+              this.x = -125;
+                player.x = 202;
+                player.y = 405;
+      }
     }
-    // Draw the enemy on the screen, required method for game
+    // Draw the enemy on the screen
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 }
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+//player class
 class Player {
     constructor(x, y) {
-        // Variables applied to each of our instances go here,
-        // we've provided one for you to get started
+        // Variables applied to each of our instances go here
         this.x = x;
         this.y = y;
-        //this.speed = speed;
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images
         this.sprite = 'images/char-boy.png';
     }
-    // Update the player's position, required method for game
-    // Parameter: dt, a time delta between ticks
+    // Update the player's position
     update() {
         if (this.x < 2)
             this.x = 2;
@@ -53,30 +56,29 @@ class Player {
         else if (this.y > 405)
             this.y = 405;
         else if (this.y < 0) {
-            //setTimeout(function(){ 
-                this.y = 405;
-                this.x = 202;
-            //}, 1000);
+            // FIXME
+            // setTimeout(function(){
+                 this.x = 202;
+                 this.y = 405;
+            //   }, 500);
         }
     }
-    // Draw the player on the screen, required method for game
+    // Draw the player on the screen
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
+    // if player tries to move outside the board, keep player in place
     handleInput(input){
        switch(input) {
            case "left":
                 this.x -= 100;
-                console.log(this.x);
-                //this.x -= this.speed + 50;
                 break;
            case "right":
                 this.x += 100;
                 break;
            case "up":
                 this.y -= 83;
-                console.log(this.y);
                 break;
            case "down":
                 this.y += 83;
@@ -85,25 +87,25 @@ class Player {
     }
 }
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+// enemy array
 const allEnemies = [];
-// between 75 and 150
-let range = Math.floor(Math.random()*(175 - 75 + 1) + 75);
-//const resetSpeed = () => range = Math.floor(Math.random()*(175 - 75 + 1) + 75);
-console.log(range);
-const enemy1 = new Enemy(-125, 310, range);
-const enemy2 = new Enemy(-125, 225, range);
-const enemy3 = new Enemy(-125, 145, range);
-const enemy4 = new Enemy(-125, 60, range);
+
+// add feature
+// change enemy speed every time player reaches the water
+
+//enemy x and y coordinates and speed between 100 and 200
+const enemy1 = new Enemy(-100, 310, Math.floor(Math.random()*(200 - 100 + 1) + 100));
+const enemy2 = new Enemy(-300, 225, Math.floor(Math.random()*(200 - 100 + 1) + 100));
+const enemy3 = new Enemy(-200, 145, Math.floor(Math.random()*(200 - 100 + 1) + 100));
+const enemy4 = new Enemy(-400, 60, Math.floor(Math.random()*(200 - 100 + 1) + 100));
+
 allEnemies.push(enemy1, enemy2, enemy3, enemy4);
+
+// player beginning coordinates
 const player = new Player(202, 405);
 
-
-
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+// This listens for key presses and sends the keys to the
+// Player.handleInput() method.
 document.addEventListener('keyup', function (e) {
     var allowedKeys = {
         37: 'left',
