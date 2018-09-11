@@ -56,11 +56,10 @@ class Player {
         else if (this.y > 405)
             this.y = 405;
         else if (this.y < 0) {
-            // FIXME
-            // setTimeout(function(){
-                 this.x = 202;
-                 this.y = 405;
-            //   }, 500);
+             setTimeout(function(){
+                 player.x = 202;
+                 player.y = 405;
+               }, 500);
         }
     }
     // Draw the player on the screen
