@@ -22,8 +22,8 @@ class Enemy {
             this.x = -125;
        
         // 2D collision logic from MDN https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-        if (player.x < this.x + 60 &&
-            player.x + 35 > this.x &&
+        if (player.x < this.x + 76 &&
+            player.x + 70 > this.x &&
             player.y < this.y + 25 &&
             player.y + 40 > this.y) {
               this.x = -125;
