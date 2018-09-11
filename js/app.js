@@ -92,11 +92,11 @@ const allEnemies = [];
 // add feature
 // change enemy speed every time player reaches the water
 
-//enemy x and y coordinates and speed between 100 and 200
-const enemy1 = new Enemy(-100, 310, Math.floor(Math.random()*(200 - 100 + 1) + 100));
-const enemy2 = new Enemy(-300, 225, Math.floor(Math.random()*(200 - 100 + 1) + 100));
-const enemy3 = new Enemy(-200, 145, Math.floor(Math.random()*(200 - 100 + 1) + 100));
-const enemy4 = new Enemy(-400, 60, Math.floor(Math.random()*(200 - 100 + 1) + 100));
+//enemy x and y coordinates and speed between 100 and 250
+const enemy1 = new Enemy(-100, 310, Math.floor(Math.random()*(250 - 100 + 1) + 100));
+const enemy2 = new Enemy(-300, 225, Math.floor(Math.random()*(250 - 100 + 1) + 100));
+const enemy3 = new Enemy(-250, 145, Math.floor(Math.random()*(250 - 100 + 1) + 100));
+const enemy4 = new Enemy(-400, 60, Math.floor(Math.random()*(250 - 100 + 1) + 100));
 
 allEnemies.push(enemy1, enemy2, enemy3, enemy4);
 
