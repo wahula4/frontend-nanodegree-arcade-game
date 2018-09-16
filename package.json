@@ -1,0 +1,23 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "===============================",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wahula4/frontend-nanodegree-arcade-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wahula4/frontend-nanodegree-arcade-game/issues"
+  },
+  "homepage": "https://github.com/wahula4/frontend-nanodegree-arcade-game#readme",
+  "devDependencies": {
+    "@types/gulp": "^4.0.5",
+    "gulp-eslint": "^5.0.0"
+  }
+}
